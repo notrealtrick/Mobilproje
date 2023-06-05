@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button depremButon,selButon,heyelanButon,cigButon,firtinaButon,orman_yanginButon;
     Context context = this;
+    public String afet = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                afet = "Deprem";
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
 
                 startActivity(intent);

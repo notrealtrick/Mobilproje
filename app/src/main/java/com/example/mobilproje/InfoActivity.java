@@ -2,27 +2,35 @@ package com.example.mobilproje;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class InfoActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
 
-    Button geriButon;
+     Button geriButon;
     Button ekleButon;
+    TextView adText,bilgiText;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        adText = findViewById(R.id.afet_isim_text);
+        bilgiText = findViewById(R.id.bilgilendirme_metni_text);
+
 
         try {
             database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
+
             database.execSQL("CREATE TABLE IF NOT EXISTS Afetler (id INT, afetAd VARCHAR, bilgi VARCHAR,videoUrl VARCHAR)");
         }
         catch (Exception e){
@@ -69,10 +77,23 @@ public class InfoActivity extends AppCompatActivity {
         int bilgiIndex = cursor.getColumnIndex("bilgi");
 
         int videoIndex = cursor.getColumnIndex("videoUrl");
-        while (cursor.moveToNext())
-            System.out.println(" id= "+ cursor.getInt(idIndex)+" ad = "+ cursor.getString(adIndex)+" bilgi = "+cursor.getString(bilgiIndex)+ " videoUrl="+ cursor.getString(videoIndex));
+        while (cursor.moveToNext()) {
+            System.out.println(" id= " + cursor.getInt(idIndex) + " ad = " + cursor.getString(adIndex) + " bilgi = " + cursor.getString(bilgiIndex) + " videoUrl=" + cursor.getString(videoIndex));
+            adText.setText(cursor.getString(adIndex));
+            bilgiText.setText(cursor.getString(bilgiIndex));
+
+        }
+
 
         cursor.close();
+
+
+
     }
 
+
+
+
+
 }
+
