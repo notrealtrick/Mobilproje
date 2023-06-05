@@ -26,12 +26,17 @@ public class MainActivity extends AppCompatActivity {
         heyelanButon = findViewById(R.id.heyelan_button);
         orman_yanginButon = findViewById(R.id.orman_yanginlari_button);
         firtinaButon = findViewById(R.id.firtina_button);
+
+
         depremButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 afet = "Deprem";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
 
@@ -46,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
+                afet = "Sel";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
-
             }
 
 
@@ -61,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                afet = "Çığ";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
 
@@ -77,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
+                afet = "Heyelan";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
 
@@ -93,7 +111,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                afet = "Orman";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
 
@@ -109,7 +131,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                afet = "Fırtına";
+
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("afet",afet);
 
                 startActivity(intent);
 
@@ -127,4 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
     }

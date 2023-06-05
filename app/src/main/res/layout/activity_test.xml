@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity">
+
+    <TextView
+        android:id="@+id/soruText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soru"
+        app:layout_constraintEnd_toStartOf="@+id/soru_sayisi_text"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/soru_sayisi_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/soru_metin_text"
+        android:layout_width="305dp"
+        android:layout_height="74dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toEndOf="@+id/soru_sayisi_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="76dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <RadioButton
+            android:id="@+id/radioA"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioB"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioC"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioD"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="RadioButton" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ilerleme_cevap_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cevapla"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+</androidx.constraintlayout.widget.ConstraintLayout>
