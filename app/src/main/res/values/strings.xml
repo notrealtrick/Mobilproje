@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mobilproje</string>
+    <string name="title_activity_info_layout">info_activity_layout</string>
 </resources>

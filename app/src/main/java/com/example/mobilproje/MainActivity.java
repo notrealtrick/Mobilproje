@@ -2,13 +2,128 @@ package com.example.mobilproje;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    Button depremButon,selButon,heyelanButon,cigButon,firtinaButon,orman_yanginButon;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        depremButon = findViewById(R.id.deprem_button);
+        selButon = findViewById(R.id.sel_button);
+        cigButon = findViewById(R.id.cig_button);
+        heyelanButon = findViewById(R.id.heyelan_button);
+        orman_yanginButon = findViewById(R.id.orman_yanginlari_button);
+        firtinaButon = findViewById(R.id.firtina_button);
+        depremButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+        selButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+        cigButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+
+        heyelanButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+
+        orman_yanginButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+
+        firtinaButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                startActivity(intent);
+
+            }
+
+
+
+
+        });
+
+
+
+
+
+
+
     }
-}
+    }
