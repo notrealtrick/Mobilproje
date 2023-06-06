@@ -87,7 +87,7 @@ public class InfoActivity extends AppCompatActivity {
                 try {
 
 
-                    database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme2','deneme','https://www.youtube.com/watch?v=8kooIgKESYE&ab_channel=JustMontage')");
+                    database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme3','deneme','https://www.youtube.com/watch?v=8kooIgKESYE&ab_channel=JustMontage')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
                     veriAlma();
 
@@ -136,6 +136,9 @@ public class InfoActivity extends AppCompatActivity {
             System.out.println(" id= " + cursor.getInt(idIndex) + " ad = " + cursor.getString(adIndex) + " bilgi = " + cursor.getString(bilgiIndex) + " videoUrl=" + cursor.getString(videoIndex));
             adText.setText(cursor.getString(adIndex));
             bilgiText.setText(cursor.getString(bilgiIndex));
+
+            video.setVideoURI(Uri.parse(cursor.getString(videoIndex)));
+            video.start();
         }
 
 
@@ -143,25 +146,29 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-         getVideoUrlFromDatabase();
+        // getVideoUrlFromDatabase();
 
 
     }
     public void getVideoUrlFromDatabase() {
-        afet = "deneme";
-        String query = "SELECT url FROM Afetler WHERE afetAd = '"+afet+"'";
+        String query = "SELECT url FROM Afetler  ";
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex("url"));
-            video.setVideoURI(Uri.parse(url));
-            video.start();
+    if (cursor.moveToFirst()) {
+        @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex("url"));
+        video.setVideoURI(Uri.parse(url));
+        video.start();
 
-            System.out.println(Uri.parse(url));
-        }
+        System.out.println(Uri.parse(url));
+    }
+
+
 
 
     }
+
+
+
 }
 
 

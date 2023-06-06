@@ -2,10 +2,14 @@ package com.example.mobilproje;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
     private SQLiteDatabase database;
@@ -20,7 +24,7 @@ public class TestActivity extends AppCompatActivity {
         try {
             database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS testler (id INT, afetAd VARCHAR, Soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS testler (id INT, afetAd VARCHAR, soru VARCHAR, A VARCHAR, B VARCHAR, C VARCHAR, D VARCHAR, cevap VARCHAR)");
 
         }
         catch (Exception e){
@@ -29,7 +33,7 @@ public class TestActivity extends AppCompatActivity {
 
         try {
 
-            database.execSQL("INSERT INTO testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','8.1')");
+            database.execSQL("INSERT INTO testler (id,afetAd, soru, A, B, C, D, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
             Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
 
 
@@ -40,27 +44,28 @@ public class TestActivity extends AppCompatActivity {
         }
 
 
+
     }
-    public void veriAlma2(){
-        Cursor cursor1 = database.rawQuery("SELECT * FROM testler",null);
-
-        int idIndex = cursor1.getColumnIndex("id");
-        int AFETadIndex = cursor1.getColumnIndex("afetAd");
-        int soruIndex = cursor1.getColumnIndex("Soru");
-
-        int cevapAIndex = cursor1.getColumnIndex("cevapA");
-        int cevapBIndex = cursor1.getColumnIndex("cevapB");
-        int cevapCIndex = cursor1.getColumnIndex("cevapC");
-        int cevapDIndex = cursor1.getColumnIndex("cevapD");
-        int cevapIndex = cursor1.getColumnIndex("cevap");
 
 
-        while (cursor1.moveToNext()) {
-            System.out.println("Cevap D: "+cursor1.getString(AFETadIndex));
+    public void veriAlma(){
+
+        Cursor cursor = database.rawQuery("SELECT * FROM testler;",null);
+        int idIndex = cursor.getColumnIndex("id");
+
+
+
+
+        while (cursor.moveToNext()) {
+            System.out.println(" id= " + cursor.getInt(idIndex) );
+
         }
 
 
-        cursor1.close();
+        cursor.close();
+
+
+
 
 
 
