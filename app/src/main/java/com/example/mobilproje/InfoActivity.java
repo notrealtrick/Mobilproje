@@ -26,7 +26,7 @@ public class InfoActivity extends AppCompatActivity {
     String afet;
 
     VideoView video;
-
+    Button test;
 
 
     @SuppressLint("MissingInflatedId")
@@ -50,6 +50,8 @@ public class InfoActivity extends AppCompatActivity {
         video = findViewById(R.id.videoView);
 
         adText.setText(afet);
+        test = findViewById(R.id.testButton);
+
 
         video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
@@ -65,6 +67,17 @@ public class InfoActivity extends AppCompatActivity {
         }
 
 
+
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InfoActivity.this, TestActivity.class);
+                intent.putExtra("afet",afet);
+
+                startActivity(intent);
+            }
+        });
 
         //// Geçici verilerin eklenmesi butonu
         ekleButon = findViewById(R.id.ekleButon);
