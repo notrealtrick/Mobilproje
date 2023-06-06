@@ -67,6 +67,22 @@ public class InfoActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
+        try {
+
+
+            database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'Deprem','Deprem doğal bir afettir ve yer kabuğundaki hareketler sonucunda meydana gelir. Aniden oluşan sarsıntılarla karakterizedir ve büyük yıkımlara neden olabilir. Depremde, evler, binalar ve diğer yapılar hasar görebilir veya yıkılabilir. Bu durum insanlara ve özellikle çocuklara zarar verebilir. Deprem sırasında çocuklar korku ve panik yaşayabilir. Güvende olmak için hızla açık bir alana çıkmalı veya masaların altına saklanmalıdırlar. Depremlere karşı hazırlıklı olmak önemlidir. Deprem çantası ve acil durum planı gibi önlemler almak, çocukları ve aileleri daha güvende tutabilir.','https://www.youtube.com/watch?v=veXjMajERLI')");
+            Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
+
+            veriAlma();
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+
 
 
 
@@ -86,20 +102,7 @@ public class InfoActivity extends AppCompatActivity {
         ekleButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
 
-
-                    database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(1,'Deprem','Deprem doğal bir afettir ve yer kabuğundaki hareketler sonucunda meydana gelir. Aniden oluşan sarsıntılarla karakterizedir ve büyük yıkımlara neden olabilir. Depremde, evler, binalar ve diğer yapılar hasar görebilir veya yıkılabilir. Bu durum insanlara ve özellikle çocuklara zarar verebilir. Deprem sırasında çocuklar korku ve panik yaşayabilir. Güvende olmak için hızla açık bir alana çıkmalı veya masaların altına saklanmalıdırlar. Depremlere karşı hazırlıklı olmak önemlidir. Deprem çantası ve acil durum planı gibi önlemler almak, çocukları ve aileleri daha güvende tutabilir.','https://www.youtube.com/watch?v=veXjMajERLI')");
-                    Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
-
-
-
-
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-
-                }
 
             }
         });
@@ -122,7 +125,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-    ///// Bilgi ekranında görünecek bilgiler için veri tabanı bağlantı işlemleri
 
 
 
@@ -130,7 +132,27 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
+    public void veriAlma(){
 
+
+        Cursor cursor = database.rawQuery("SELECT * FROM Afetler;",null);
+        int idIndex = cursor.getColumnIndex("id");
+        int adIndex  = cursor.getColumnIndex("afetAd");
+        int bilgiIndex = cursor.getColumnIndex("bilgi");
+
+
+
+        while (cursor.moveToNext()) {
+            adText.setText(cursor.getString(adIndex));
+            bilgiText.setText(cursor.getString(bilgiIndex));
+        }
+
+
+        cursor.close();
+
+
+
+    }
 
 
 
