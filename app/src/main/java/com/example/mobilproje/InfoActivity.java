@@ -51,7 +51,7 @@ public class InfoActivity extends AppCompatActivity {
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
-
+        testler();
 
         video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
@@ -133,13 +133,15 @@ public class InfoActivity extends AppCompatActivity {
 
 
         while (cursor.moveToNext()) {
-            System.out.println(" id= " + cursor.getInt(idIndex) + " ad = " + cursor.getString(adIndex) + " bilgi = " + cursor.getString(bilgiIndex) + " videoUrl=" + cursor.getString(videoIndex));
-            adText.setText(cursor.getString(adIndex));
-            bilgiText.setText(cursor.getString(bilgiIndex));
 
-            video.setVideoURI(Uri.parse(cursor.getString(videoIndex)));
-            video.start();
-        }
+                System.out.println(" id= " + cursor.getInt(idIndex) + " ad = " + cursor.getString(adIndex) + " bilgi = " + cursor.getString(bilgiIndex) + " videoUrl=" + cursor.getString(videoIndex));
+                adText.setText(cursor.getString(adIndex));
+                bilgiText.setText(cursor.getString(bilgiIndex));
+
+                video.setVideoURI(Uri.parse(cursor.getString(videoIndex)));
+                video.start();
+            System.out.println(cursor.getString(adIndex));
+            }
 
 
         cursor.close();
@@ -165,8 +167,65 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-    }
 
+
+
+
+
+    }
+    public void testler(){
+
+        /////////// Veri tabanı işlemleri
+        try {
+            database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
+
+            database.execSQL("CREATE TABLE IF NOT EXISTS Quiz (id INT, afetAd VARCHAR, soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+
+            database.execSQL("INSERT INTO Quiz (id,afetAd, soru, cevapA, cevapB, cevapC, cevapD, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
+            Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+        veriAlma();
+
+
+
+
+
+        Cursor cursor = database.rawQuery("SELECT * FROM Quiz;",null);
+        int idIndex = cursor.getColumnIndex("id");
+        int adIndex  = cursor.getColumnIndex("afetAd");
+
+
+
+        while (cursor.moveToNext()) {
+            System.out.println(" id= " + cursor.getInt(idIndex) +" ad: "+cursor.getString(adIndex)+"sdfsdfsdf");
+
+        }
+        System.out.println("Buraya gelindi");
+
+        cursor.close();
+
+
+
+
+
+
+
+
+}
 
 
 }

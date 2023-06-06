@@ -24,7 +24,7 @@ public class TestActivity extends AppCompatActivity {
         try {
             database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS testler (id INT, afetAd VARCHAR, soru VARCHAR, A VARCHAR, B VARCHAR, C VARCHAR, D VARCHAR, cevap VARCHAR)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS Testler1 (id INT, afetAd VARCHAR, soru VARCHAR, A VARCHAR, B VARCHAR, C VARCHAR, D VARCHAR, cevap VARCHAR)");
 
         }
         catch (Exception e){
@@ -33,7 +33,7 @@ public class TestActivity extends AppCompatActivity {
 
         try {
 
-            database.execSQL("INSERT INTO testler (id,afetAd, soru, A, B, C, D, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
+            database.execSQL("INSERT INTO Testler1 (id,afetAd, soru, A, B, C, D, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
             Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
 
 
@@ -43,21 +43,21 @@ public class TestActivity extends AppCompatActivity {
 
         }
 
-
+        veriAlma();
 
     }
 
 
     public void veriAlma(){
 
-        Cursor cursor = database.rawQuery("SELECT * FROM testler;",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Testler1;",null);
         int idIndex = cursor.getColumnIndex("id");
-
+        int adIndex  = cursor.getColumnIndex("afetAd");
 
 
 
         while (cursor.moveToNext()) {
-            System.out.println(" id= " + cursor.getInt(idIndex) );
+            System.out.println(" id= " + cursor.getInt(idIndex) +" ad: "+cursor.getString(adIndex)+"sdfsdfsdf");
 
         }
 
