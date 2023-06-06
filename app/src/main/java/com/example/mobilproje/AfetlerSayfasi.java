@@ -40,7 +40,7 @@ public class AfetlerSayfasi extends AppCompatActivity {
             public void onClick(View v) {
                 // Quiz sayfasını açmak için gerekli kodlar buraya gelecek
                 // Örneğin:
-                Intent intent = new Intent(AfetlerSayfasi.this, QuizActivity.class);
+                Intent intent = new Intent(AfetlerSayfasi.this, TestActivity.class);
                 startActivity(intent);
             }
         });

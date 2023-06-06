@@ -48,7 +48,7 @@ public class InfoActivity extends AppCompatActivity {
         try {
             database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS Testler (id INT, afetAd VARCHAR, Soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS testler (id INT, afetAd VARCHAR, Soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
 
         }
         catch (Exception e){
@@ -64,6 +64,12 @@ public class InfoActivity extends AppCompatActivity {
                     database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme','deneme','deneme')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
                     veriAlma();
+
+                    database.execSQL("INSERT INTO testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','8.1')");
+                    Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
+                    veriAlma2();
+
+
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -72,9 +78,7 @@ public class InfoActivity extends AppCompatActivity {
                 try {
 
 
-                    database.execSQL("INSERT INTO Testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'deneme','deneme Sorusu','Ankara','İzmir','İstanbul','Antalya','Antalya')");
-                    Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
-                    veriAlma2();
+
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -120,31 +124,25 @@ public class InfoActivity extends AppCompatActivity {
 
     }
     public void veriAlma2(){
-        Cursor cursor = database.rawQuery("SELECT * FROM Testler",null);
+        Cursor cursor1 = database.rawQuery("SELECT * FROM testler",null);
 
-        int idIndex = cursor.getColumnIndex("id");
-        int adIndex = cursor.getColumnIndex("afetAd");
-        int soruIndex = cursor.getColumnIndex("Soru");
+        int idIndex = cursor1.getColumnIndex("id");
+        int AFETadIndex = cursor1.getColumnIndex("afetAd");
+        int soruIndex = cursor1.getColumnIndex("Soru");
 
-        int cevapAIndex = cursor.getColumnIndex("cevapA");
-        int cevapBIndex = cursor.getColumnIndex("cevapB");
-        int cevapCIndex = cursor.getColumnIndex("cevapC");
-        int cevapDIndex = cursor.getColumnIndex("cevapD");
-        int cevapIndex = cursor.getColumnIndex("cevap");
+        int cevapAIndex = cursor1.getColumnIndex("cevapA");
+        int cevapBIndex = cursor1.getColumnIndex("cevapB");
+        int cevapCIndex = cursor1.getColumnIndex("cevapC");
+        int cevapDIndex = cursor1.getColumnIndex("cevapD");
+        int cevapIndex = cursor1.getColumnIndex("cevap");
 
 
-        while (cursor.moveToNext()) {
-            System.out.println(cursor.getString(adIndex));
-            System.out.println(cursor.getString(soruIndex));
-            System.out.println(cursor.getString(cevapAIndex));
-            System.out.println(cursor.getString(cevapBIndex));
-            System.out.println(cursor.getString(cevapCIndex));
-            System.out.println(cursor.getString(cevapDIndex));
-            System.out.println(cursor.getString(cevapIndex));
+        while (cursor1.moveToNext()) {
+            System.out.println("Cevap D: "+cursor1.getString(AFETadIndex));
         }
 
 
-        cursor.close();
+        cursor1.close();
 
 
 
