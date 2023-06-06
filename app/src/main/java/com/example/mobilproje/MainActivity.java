@@ -34,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
                 afet = "Deprem";
 
-
+                /// Bilgilendirme sayfası geçiş kodu
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+
+                /// Geçiş ile veri gönderilmesi
                 intent.putExtra("afet",afet);
 
+
+                /// Gönderirimin başlatılması
                 startActivity(intent);
 
             }
