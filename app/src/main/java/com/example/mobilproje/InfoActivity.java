@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+
+
+
 public class InfoActivity extends AppCompatActivity {
 
 
@@ -51,7 +54,7 @@ public class InfoActivity extends AppCompatActivity {
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
-        testler();
+        veriAlma();
 
         video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
@@ -87,7 +90,7 @@ public class InfoActivity extends AppCompatActivity {
                 try {
 
 
-                    database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme3','deneme','https://www.youtube.com/watch?v=8kooIgKESYE&ab_channel=JustMontage')");
+                    database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(1,'Deprem','Deprem doğal bir afettir ve yer kabuğundaki hareketler sonucunda meydana gelir. Aniden oluşan sarsıntılarla karakterizedir ve büyük yıkımlara neden olabilir. Depremde, evler, binalar ve diğer yapılar hasar görebilir veya yıkılabilir. Bu durum insanlara ve özellikle çocuklara zarar verebilir. Deprem sırasında çocuklar korku ve panik yaşayabilir. Güvende olmak için hızla açık bir alana çıkmalı veya masaların altına saklanmalıdırlar. Depremlere karşı hazırlıklı olmak önemlidir. Deprem çantası ve acil durum planı gibi önlemler almak, çocukları ve aileleri daha güvende tutabilir.','https://www.youtube.com/watch?v=veXjMajERLI')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
                     veriAlma();
 
@@ -124,31 +127,35 @@ public class InfoActivity extends AppCompatActivity {
     ///// Bilgi ekranında görünecek bilgiler için veri tabanı bağlantı işlemleri
     public void veriAlma(){
 
-        Cursor cursor = database.rawQuery("SELECT * FROM Afetler;",null);
-        int idIndex = cursor.getColumnIndex("id");
-        int adIndex = cursor.getColumnIndex("afetAd");
-        int bilgiIndex = cursor.getColumnIndex("bilgi");
-        int videoIndex = cursor.getColumnIndex("videoUrl");
 
 
 
-        while (cursor.moveToNext()) {
-
-                System.out.println(" id= " + cursor.getInt(idIndex) + " ad = " + cursor.getString(adIndex) + " bilgi = " + cursor.getString(bilgiIndex) + " videoUrl=" + cursor.getString(videoIndex));
-                adText.setText(cursor.getString(adIndex));
-                bilgiText.setText(cursor.getString(bilgiIndex));
-
-                video.setVideoURI(Uri.parse(cursor.getString(videoIndex)));
-                video.start();
-            System.out.println(cursor.getString(adIndex));
-            }
-
-
-        cursor.close();
 
 
 
-        // getVideoUrlFromDatabase();
+
+        Cursor cursor1 = database.rawQuery("SELECT * FROM Afetler;",null);
+        int idIndex = cursor1.getColumnIndex("id");
+        int adIndex  = cursor1.getColumnIndex("afetAd");
+        int bilgiIndex = cursor1.getColumnIndex("bilgi");
+
+        switch (afet)
+        {
+            case "Deprem":
+                break;
+
+
+        }
+
+        while (cursor1.moveToNext()) {
+            if((String)cursor1.getString(adIndex)=="")
+            {}
+
+        }
+        System.out.println("Buraya gelindi");
+
+        cursor1.close();
+
 
 
     }
@@ -174,49 +181,6 @@ public class InfoActivity extends AppCompatActivity {
 
     }
     public void testler(){
-
-        /////////// Veri tabanı işlemleri
-        try {
-            database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
-
-            database.execSQL("CREATE TABLE IF NOT EXISTS Quiz (id INT, afetAd VARCHAR, soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        try {
-
-            database.execSQL("INSERT INTO Quiz (id,afetAd, soru, cevapA, cevapB, cevapC, cevapD, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
-            Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
-
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-
-        }
-
-        veriAlma();
-
-
-
-
-
-        Cursor cursor = database.rawQuery("SELECT * FROM Quiz;",null);
-        int idIndex = cursor.getColumnIndex("id");
-        int adIndex  = cursor.getColumnIndex("afetAd");
-
-
-
-        while (cursor.moveToNext()) {
-            System.out.println(" id= " + cursor.getInt(idIndex) +" ad: "+cursor.getString(adIndex)+"sdfsdfsdf");
-
-        }
-        System.out.println("Buraya gelindi");
-
-        cursor.close();
 
 
 
