@@ -6,35 +6,43 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity  {
     private SQLiteDatabase database;
 
+
+    TextView textSoru;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        textSoru = findViewById(R.id.soru_metin_text);
 
-            /////////// Veri tabanı işlemleri
+
+
+        //// Veri tabanı tablo oluşturma işlemi
         try {
             database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS Testler1 (id INT, afetAd VARCHAR, soru VARCHAR, A VARCHAR, B VARCHAR, C VARCHAR, D VARCHAR, cevap VARCHAR)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS Sorular (id INT, afetAd VARCHAR, soru VARCHAR,cevap1 VARCHAR,cevap2 VARCHAR,cevap3 VARCHAR,cevap4 VARCHAR,cevap VARCHAR)");
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
-
         try {
 
-            database.execSQL("INSERT INTO Testler1 (id,afetAd, soru, A, B, C, D, cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','20.5')");
-            Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
+
+            database.execSQL("INSERT INTO Afetler (id,afetAd, soru,cevap1,cevap2,cevap3,cevap4,cevap)  VALUES(0,'Aşağıdakilerden hangisi bir deprem yüksekliği olamaz?','5.6','6.5','3.6','36.1','36.1')");
+            Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
+
+            veriAlma();
 
 
         }
@@ -43,26 +51,37 @@ public class TestActivity extends AppCompatActivity {
 
         }
 
-        veriAlma();
 
     }
 
 
     public void veriAlma(){
 
-        Cursor cursor = database.rawQuery("SELECT * FROM Testler1;",null);
+
+        int index=0;
+        Cursor cursor = database.rawQuery("SELECT * FROM Sorular;",null);
         int idIndex = cursor.getColumnIndex("id");
         int adIndex  = cursor.getColumnIndex("afetAd");
+        int soruIndex = cursor.getColumnIndex("soru");
+
+
+
+
+
+
 
 
 
         while (cursor.moveToNext()) {
-            System.out.println(" id= " + cursor.getInt(idIndex) +" ad: "+cursor.getString(adIndex)+"sdfsdfsdf");
+
+            textSoru.setText(cursor.getString(soruIndex));
+
 
         }
 
 
         cursor.close();
+
 
 
 

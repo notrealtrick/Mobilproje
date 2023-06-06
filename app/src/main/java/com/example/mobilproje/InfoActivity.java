@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -31,7 +32,7 @@ public class InfoActivity extends AppCompatActivity {
     VideoView video;
     Button test;
 
-
+    ImageView image;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,11 @@ public class InfoActivity extends AppCompatActivity {
 
         afet = veriAl.getStringExtra("afet");
 
-
-
         adText = findViewById(R.id.afet_isim_text);
         bilgiText = findViewById(R.id.bilgilendirme_metni_text);
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
-
 
         //// Veri tabanı tablo oluşturma işlemi
         try {
@@ -68,7 +66,7 @@ public class InfoActivity extends AppCompatActivity {
         try {
 
 
-            database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'Deprem','Deprem doğal bir afettir ve yer kabuğundaki hareketler sonucunda meydana gelir. Aniden oluşan sarsıntılarla karakterizedir ve büyük yıkımlara neden olabilir. Depremde, evler, binalar ve diğer yapılar hasar görebilir veya yıkılabilir. Bu durum insanlara ve özellikle çocuklara zarar verebilir. Deprem sırasında çocuklar korku ve panik yaşayabilir. Güvende olmak için hızla açık bir alana çıkmalı veya masaların altına saklanmalıdırlar. Depremlere karşı hazırlıklı olmak önemlidir. Deprem çantası ve acil durum planı gibi önlemler almak, çocukları ve aileleri daha güvende tutabilir.','https://www.youtube.com/watch?v=veXjMajERLI')");
+            database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(2,'Deprem','Deprem doğal bir felakettir ve yer kabuğundaki hareketler sonucunda oluşur. Yer kabuğu parçalarının ani kaymasıyla ortaya çıkar. Bu hareketler sırasında yer sarsılır ve büyük enerji açığa çıkar. Depremler tehlikeli olabilir ve can ve mal kaybına neden olabilir. Çocuklar depremlere karşı hazırlıklı olmalıdır. Deprem anında güvende olmak için önceden belirlenmiş bir güvenli alan belirlemek önemlidir. Deprem sırasında panik yapmadan sakin kalmak ve ebeveynlerin talimatlarını dinlemek gereklidir. Deprem öncesi ve sonrası aileyle birlikte plan yapmak, acil durum çantası hazırlamak ve acil numaraları öğrenmek de önemlidir. Depremlerden korunmak için doğru bilgilere sahip olmak ve deprem güvenliği hakkında eğitim almak gereklidir.','https://www.youtube.com/watch?v=veXjMajERLI')");
             Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
 
             veriAlma();
@@ -96,14 +94,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         //// Geçici verilerin eklenmesi butonu
-        ekleButon = findViewById(R.id.ekleButon);
-        ekleButon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        });
 
 
         geriButon = findViewById(R.id.geriButton);
@@ -129,8 +120,9 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-
     public void veriAlma(){
+
+
 
         int index=0;
         Cursor cursor = database.rawQuery("SELECT * FROM Afetler;",null);
@@ -145,10 +137,15 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
+
+
         while (cursor.moveToNext()) {
+
+
             adText.setText(cursor.getString(adIndex));
             bilgiText.setText(cursor.getString(bilgiIndex));
-        }
+
+            }
 
 
         cursor.close();

@@ -8,10 +8,10 @@
 
     <TextView
         android:id="@+id/afet_isim_text"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         tools:text="Afet" />
 
     <ImageView
@@ -19,14 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/deprem_icon" />
-
-    <TextView
-        android:id="@+id/bilgilendirme_metni_text"
-        android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"
-        android:text="Metin bilgisi burada görünecek." />
 
     <LinearLayout
         android:layout_marginTop="16dp"
@@ -42,19 +34,26 @@
             android:text="Ana Sayfa" />
 
         <Button
-            android:id="@+id/ekleButon"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="47dp"
-            android:text="Ekle" />
-
-        <Button
             android:id="@+id/testButton"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="47dp"
             android:text="Test" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bilgilendirme_metni_text"
+            android:layout_width="match_parent"
+            android:layout_height="429dp"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="Metin bilgisi burada görünecek." />
     </LinearLayout>
 
 </LinearLayout>
