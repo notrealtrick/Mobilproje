@@ -6,15 +6,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 public class InfoActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
+    private VideoView videoView;
 
     Button geriButon;
     Button ekleButon;
@@ -29,6 +33,13 @@ public class InfoActivity extends AppCompatActivity {
         Intent veriAl = getIntent();
         afet = veriAl.getStringExtra("afet");
 
+        // Video ayarları
+        String videoURL = "https://www.youtube.com/watch?v=VIDEO_ID";
+        Uri videoUri = Uri.parse(videoURL);
+        videoView.setVideoURI(videoUri);
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
 
 
         adText = findViewById(R.id.afet_isim_text);
