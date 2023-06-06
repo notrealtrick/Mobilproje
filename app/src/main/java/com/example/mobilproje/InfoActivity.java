@@ -15,6 +15,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -32,8 +33,11 @@ public class InfoActivity extends AppCompatActivity {
     TextView adText,bilgiText;
     String afet;
 
-    VideoView video;
+
     Button test;
+    ImageView ImageView = findViewById(R.id.ImageView);
+
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -42,22 +46,6 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        View view = this.getCurrentFocus();
-        if (view != null){
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);}
-
-        video = findViewById(R.id.videoView);
-
-        // Video dosyasının URI'sini belirtin
-        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.ormanyanginlari);
-
-        // VideoView'e URI'yi ayarlayın
-        video.setVideoURI(videoUri);
-
-        // Videoyu başlatın
-        video.start();
-
 
 
 
@@ -65,18 +53,40 @@ public class InfoActivity extends AppCompatActivity {
 
 
         afet = veriAl.getStringExtra("afet");
+      /*  switch (afet) {
+            case "deprem":
+                ImageView.setImageResource(R.drawable.deprem_icon);
+                break;
+            case "cig":
+                ImageView.setImageResource(R.drawable.cig_icon);
+                break;
+            case "firtina":
+                ImageView.setImageResource(R.drawable.firtina_icon);
+                break;
+            case "heyelan":
+                ImageView.setImageResource(R.drawable.heyelan_icon);
+                break;
+            case "orman;yanginlari":
+                ImageView.setImageResource(R.drawable.orman_yanginlari_icon);
+                break;
+            case "sel":
+                ImageView.setImageResource(R.drawable.sel_icon);
+                break;
+
+            default:
+                ImageView.setImageResource(R.drawable.afetler);
+                break;
+        }
+*/
 
 
-
-        adText = findViewById(R.id.afet_isim_text);
+            adText = findViewById(R.id.afet_isim_text);
         bilgiText = findViewById(R.id.bilgilendirme_metni_text);
-        video = findViewById(R.id.videoView);
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
 
 
-        video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
         //// Veri tabanı tablo oluşturma işlemi
         try {
@@ -160,8 +170,6 @@ public class InfoActivity extends AppCompatActivity {
             adText.setText(cursor.getString(adIndex));
             bilgiText.setText(cursor.getString(bilgiIndex));
 
-            video.setVideoURI(Uri.parse(cursor.getString(videoIndex)));
-            video.start();
         }
 
 
@@ -170,22 +178,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
         // getVideoUrlFromDatabase();
-
-
-    }
-    public void getVideoUrlFromDatabase() {
-        String query = "SELECT url FROM Afetler  ";
-        Cursor cursor = database.rawQuery(query, null);
-
-    if (cursor.moveToFirst()) {
-        @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex("url"));
-        video.setVideoURI(Uri.parse(url));
-        video.start();
-
-        System.out.println(Uri.parse(url));
-    }
-
-
 
 
     }
