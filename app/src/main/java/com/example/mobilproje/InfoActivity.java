@@ -138,11 +138,22 @@ public class InfoActivity extends AppCompatActivity {
         int idIndex = cursor1.getColumnIndex("id");
         int adIndex  = cursor1.getColumnIndex("afetAd");
         int bilgiIndex = cursor1.getColumnIndex("bilgi");
-
+        int index = 0;
         switch (afet)
         {
             case "Deprem":
+                index = 1;
                 break;
+            case "Sel":
+                index = 2;
+                break;
+            case "Fırtına":
+                break;
+            case "Orman":
+                break;
+            case "Çığ":
+                break;
+                
 
 
         }
