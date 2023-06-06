@@ -56,15 +56,7 @@ public class InfoActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-        try {
-            database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS Testler (id INT, afetAd VARCHAR, Soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
         ekleButon = findViewById(R.id.ekleButon);
         ekleButon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,22 +67,15 @@ public class InfoActivity extends AppCompatActivity {
                     database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme','deneme','deneme')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
                     veriAlma();
+
+
+
                 }
                 catch (Exception e){
                     e.printStackTrace();
 
                 }
-                try {
 
-
-                    database.execSQL("INSERT INTO Testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'deneme','deneme Sorusu','Ankara','İzmir','İstanbul','Antalya','Antalya')");
-                    Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
-                    veriAlma2();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-
-                }
             }
         });
 
@@ -122,36 +107,6 @@ public class InfoActivity extends AppCompatActivity {
             adText.setText(cursor.getString(adIndex));
             bilgiText.setText(cursor.getString(bilgiIndex));
 
-        }
-
-
-        cursor.close();
-
-
-
-    }
-    public void veriAlma2(){
-        Cursor cursor = database.rawQuery("SELECT * FROM Testler",null);
-
-        int idIndex = cursor.getColumnIndex("id");
-        int adIndex = cursor.getColumnIndex("afetAd");
-        int soruIndex = cursor.getColumnIndex("Soru");
-
-        int cevapAIndex = cursor.getColumnIndex("cevapA");
-        int cevapBIndex = cursor.getColumnIndex("cevapB");
-        int cevapCIndex = cursor.getColumnIndex("cevapC");
-        int cevapDIndex = cursor.getColumnIndex("cevapD");
-        int cevapIndex = cursor.getColumnIndex("cevap");
-
-
-        while (cursor.moveToNext()) {
-            System.out.println(cursor.getString(adIndex));
-            System.out.println(cursor.getString(soruIndex));
-            System.out.println(cursor.getString(cevapAIndex));
-            System.out.println(cursor.getString(cevapBIndex));
-            System.out.println(cursor.getString(cevapCIndex));
-            System.out.println(cursor.getString(cevapDIndex));
-            System.out.println(cursor.getString(cevapIndex));
         }
 
 
