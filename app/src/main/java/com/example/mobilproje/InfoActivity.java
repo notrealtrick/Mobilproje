@@ -50,12 +50,10 @@ public class InfoActivity extends AppCompatActivity {
 
         adText = findViewById(R.id.afet_isim_text);
         bilgiText = findViewById(R.id.bilgilendirme_metni_text);
-        video = findViewById(R.id.videoView);
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
 
-        video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
         //// Veri tabanı tablo oluşturma işlemi
         try {
@@ -134,11 +132,16 @@ public class InfoActivity extends AppCompatActivity {
 
     public void veriAlma(){
 
-
+        int index=0;
         Cursor cursor = database.rawQuery("SELECT * FROM Afetler;",null);
         int idIndex = cursor.getColumnIndex("id");
         int adIndex  = cursor.getColumnIndex("afetAd");
         int bilgiIndex = cursor.getColumnIndex("bilgi");
+
+
+
+
+
 
 
 
