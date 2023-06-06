@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,8 @@ public class TestActivity extends AppCompatActivity  {
 
 
     TextView textSoru;
+    RadioButton r1,r2,r3,r4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,11 @@ public class TestActivity extends AppCompatActivity  {
         int idIndex = cursor.getColumnIndex("id");
         int adIndex  = cursor.getColumnIndex("afetAd");
         int soruIndex = cursor.getColumnIndex("soru");
-
+        int cevap1 = cursor.getColumnIndex("cevap1");
+        int cevap2 = cursor.getColumnIndex("cevap2");
+        int cevap3 = cursor.getColumnIndex("cevap3");
+        int cevap4 = cursor.getColumnIndex("cevap4");
+        int cevap = cursor.getColumnIndex("cevap");
 
 
 
@@ -75,7 +82,10 @@ public class TestActivity extends AppCompatActivity  {
         while (cursor.moveToNext()) {
 
             textSoru.setText(cursor.getString(soruIndex));
-
+            r1.setText(cursor.getString(cevap1));
+            r2.setText(cursor.getString(cevap2));
+            r3.setText(cursor.getString(cevap3));
+            r4.setText(cursor.getString(cevap4));
 
         }
 
