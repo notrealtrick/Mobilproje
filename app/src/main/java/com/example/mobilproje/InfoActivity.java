@@ -3,16 +3,23 @@ package com.example.mobilproje;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.io.File;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -34,6 +41,22 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        View view = this.getCurrentFocus();
+        if (view != null){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);}
+
+        video = findViewById(R.id.videoView);
+
+        // Video dosyasının URI'sini belirtin
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.ormanyanginlari);
+
+        // VideoView'e URI'yi ayarlayın
+        video.setVideoURI(videoUri);
+
+        // Videoyu başlatın
+        video.start();
 
 
 
