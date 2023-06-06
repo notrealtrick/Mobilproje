@@ -6,26 +6,20 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 public class InfoActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
-    private VideoView videoView;
 
     Button geriButon;
     Button ekleButon;
     TextView adText,bilgiText;
     String afet;
-    Button test;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +29,7 @@ public class InfoActivity extends AppCompatActivity {
         Intent veriAl = getIntent();
         afet = veriAl.getStringExtra("afet");
 
-        // Video ayarları
-        String videoURL = "https://www.youtube.com/watch?v=VIDEO_ID";
-        Uri videoUri = Uri.parse(videoURL);
-        videoView.setVideoURI(videoUri);
-        MediaController mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
 
-
-        ekleButon = findViewById(R.id.ekleButon);
 
         adText = findViewById(R.id.afet_isim_text);
         bilgiText = findViewById(R.id.bilgilendirme_metni_text);
@@ -60,37 +45,8 @@ public class InfoActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-        try {
-            database = this.openOrCreateDatabase("AfetDB", MODE_PRIVATE,null);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS Testler (id INT, afetAd VARCHAR, Soru VARCHAR, cevapA VARCHAR, cevapB VARCHAR, cevapC VARCHAR, cevapD VARCHAR, cevap VARCHAR)");
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        test = findViewById(R.id.testButton);
-
-
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-                Intent intent = new Intent(InfoActivity.this, TestActivity.class);
-                intent.putExtra("afet",afet);
-
-                startActivity(intent);
-
-            }
-        });
-
-
-
-
+        ekleButon = findViewById(R.id.ekleButon);
         ekleButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,22 +56,18 @@ public class InfoActivity extends AppCompatActivity {
                     database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(0,'deneme','deneme','deneme')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
                     veriAlma();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
 
-                }
-                try {
-
-
-                    database.execSQL("INSERT INTO Testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'deneme','deneme Sorusu','Ankara','İzmir','İstanbul','Antalya','Antalya')");
+                    database.execSQL("INSERT INTO testler (id,afetAd, Soru,cevapA,cevapB,cevapC,cevapD,cevap)  VALUES(0,'Deprem','Aşağıdakilerden hangisi bir deprem şiddeti olamaz? ','20.5','6.5','4.5','3.6','8.1')");
                     Toast.makeText(getApplicationContext(), "Soru eklendi", Toast.LENGTH_LONG).show();
                     veriAlma2();
+
+
                 }
                 catch (Exception e){
                     e.printStackTrace();
 
                 }
+
             }
         });
 
@@ -156,31 +108,25 @@ public class InfoActivity extends AppCompatActivity {
 
     }
     public void veriAlma2(){
-        Cursor cursor = database.rawQuery("SELECT * FROM Testler",null);
+        Cursor cursor1 = database.rawQuery("SELECT * FROM testler",null);
 
-        int idIndex = cursor.getColumnIndex("id");
-        int adIndex = cursor.getColumnIndex("afetAd");
-        int soruIndex = cursor.getColumnIndex("Soru");
+        int idIndex = cursor1.getColumnIndex("id");
+        int AFETadIndex = cursor1.getColumnIndex("afetAd");
+        int soruIndex = cursor1.getColumnIndex("Soru");
 
-        int cevapAIndex = cursor.getColumnIndex("cevapA");
-        int cevapBIndex = cursor.getColumnIndex("cevapB");
-        int cevapCIndex = cursor.getColumnIndex("cevapC");
-        int cevapDIndex = cursor.getColumnIndex("cevapD");
-        int cevapIndex = cursor.getColumnIndex("cevap");
+        int cevapAIndex = cursor1.getColumnIndex("cevapA");
+        int cevapBIndex = cursor1.getColumnIndex("cevapB");
+        int cevapCIndex = cursor1.getColumnIndex("cevapC");
+        int cevapDIndex = cursor1.getColumnIndex("cevapD");
+        int cevapIndex = cursor1.getColumnIndex("cevap");
 
 
-        while (cursor.moveToNext()) {
-            System.out.println(cursor.getString(adIndex));
-            System.out.println(cursor.getString(soruIndex));
-            System.out.println(cursor.getString(cevapAIndex));
-            System.out.println(cursor.getString(cevapBIndex));
-            System.out.println(cursor.getString(cevapCIndex));
-            System.out.println(cursor.getString(cevapDIndex));
-            System.out.println(cursor.getString(cevapIndex));
+        while (cursor1.moveToNext()) {
+            System.out.println("Cevap D: "+cursor1.getString(AFETadIndex));
         }
 
 
-        cursor.close();
+        cursor1.close();
 
 
 

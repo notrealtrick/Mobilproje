@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/bilgilendirme_metni_text"
         android:layout_width="match_parent"
-        android:layout_height="213dp"
+        android:layout_height="128dp"
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:text="Metin bilgisi burada görünecek." />
