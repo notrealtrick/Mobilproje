@@ -24,6 +24,8 @@ public class InfoActivity extends AppCompatActivity {
     Button ekleButon;
     TextView adText,bilgiText;
     String afet;
+    Button test;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class InfoActivity extends AppCompatActivity {
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
 
+
+        ekleButon = findViewById(R.id.ekleButon);
 
         adText = findViewById(R.id.afet_isim_text);
         bilgiText = findViewById(R.id.bilgilendirme_metni_text);
@@ -65,7 +69,28 @@ public class InfoActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-        ekleButon = findViewById(R.id.ekleButon);
+
+        test = findViewById(R.id.testButton);
+
+
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                Intent intent = new Intent(InfoActivity.this, TestActivity.class);
+                intent.putExtra("afet",afet);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
         ekleButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
