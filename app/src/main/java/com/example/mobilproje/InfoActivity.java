@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class InfoActivity extends AppCompatActivity {
     Button ekleButon;
     TextView adText,bilgiText;
     String afet;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

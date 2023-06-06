@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,42 +7,55 @@
     tools:context=".TestActivity">
 
     <TextView
+        android:id="@+id/afet_isim_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/soruText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Afet" />
+
+    <TextView
         android:id="@+id/soruText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Soru"
+        app:layout_constraintBaseline_toBaselineOf="@+id/soru_sayisi_text"
         app:layout_constraintEnd_toStartOf="@+id/soru_sayisi_text"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="106dp" />
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/soru_sayisi_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="106dp" />
+        app:layout_constraintStart_toEndOf="@+id/soruText"
+        app:layout_constraintTop_toBottomOf="@+id/afet_isim_text"
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/soru_metin_text"
         android:layout_width="305dp"
         android:layout_height="74dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toEndOf="@+id/soru_sayisi_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintTop_toBottomOf="@+id/afet_isim_text"
+        android:layout_marginTop="50dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="409dp"
-        android:layout_height="400dp"
-        android:layout_marginBottom="76dp"
+        android:layout_height="360dp"
+        android:layout_marginBottom="150dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toTopOf="@+id/ilerleme_cevap_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/radioA"
@@ -75,10 +88,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="cevapla"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
