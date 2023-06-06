@@ -5,28 +5,56 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/afet_isim_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        tools:text="Afet" />
+
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="16dp" />
 
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="match_parent"
-        android:layout_height="257dp"
+        android:layout_height="213dp"
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:text="Metin bilgisi burada görünecek." />
 
-    <Button
-        android:id="@+id/quizButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="Quiz" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/geriButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="47dp"
+            android:text="Ana Sayfa" />
+
+        <Button
+            android:id="@+id/ekleButon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="47dp"
+            android:text="Ekle" />
+
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="47dp"
+            android:text="Test" />
+
+    </LinearLayout>
 
 </LinearLayout>

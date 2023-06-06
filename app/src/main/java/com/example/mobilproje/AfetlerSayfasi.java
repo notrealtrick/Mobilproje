@@ -15,7 +15,7 @@ public class AfetlerSayfasi extends AppCompatActivity {
 
     private VideoView videoView;
     private TextView infoTextView;
-    private Button quizButton;
+    private Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class AfetlerSayfasi extends AppCompatActivity {
 
         videoView = findViewById(R.id.videoView);
         infoTextView = findViewById(R.id.infoTextView);
-        quizButton = findViewById(R.id.quizButton);
+        testButton = findViewById(R.id.testButton);
 
         // Video ayarları
         String videoURL = "https://www.youtube.com/watch?v=VIDEO_ID";
@@ -35,12 +35,12 @@ public class AfetlerSayfasi extends AppCompatActivity {
         mediaController.setAnchorView(videoView);
 
         // Quiz butonu tıklama olayı
-        quizButton.setOnClickListener(new View.OnClickListener() {
+        testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Quiz sayfasını açmak için gerekli kodlar buraya gelecek
                 // Örneğin:
-                Intent intent = new Intent(AfetlerSayfasi.this, QuizActivity.class);
+                Intent intent = new Intent(AfetlerSayfasi.this, TestActivity.class);
                 startActivity(intent);
             }
         });
