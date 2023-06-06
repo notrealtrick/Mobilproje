@@ -54,7 +54,6 @@ public class InfoActivity extends AppCompatActivity {
 
         adText.setText(afet);
         test = findViewById(R.id.testButton);
-        veriAlma();
 
         video.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=OJtmO737jFw"));
 
@@ -92,7 +91,6 @@ public class InfoActivity extends AppCompatActivity {
 
                     database.execSQL("INSERT INTO Afetler (id,afetAd, bilgi,videoUrl)  VALUES(1,'Deprem','Deprem doğal bir afettir ve yer kabuğundaki hareketler sonucunda meydana gelir. Aniden oluşan sarsıntılarla karakterizedir ve büyük yıkımlara neden olabilir. Depremde, evler, binalar ve diğer yapılar hasar görebilir veya yıkılabilir. Bu durum insanlara ve özellikle çocuklara zarar verebilir. Deprem sırasında çocuklar korku ve panik yaşayabilir. Güvende olmak için hızla açık bir alana çıkmalı veya masaların altına saklanmalıdırlar. Depremlere karşı hazırlıklı olmak önemlidir. Deprem çantası ve acil durum planı gibi önlemler almak, çocukları ve aileleri daha güvende tutabilir.','https://www.youtube.com/watch?v=veXjMajERLI')");
                     Toast.makeText(getApplicationContext(), "Kayıt Başarıyla Eklendi", Toast.LENGTH_LONG).show();
-                    veriAlma();
 
 
 
@@ -125,62 +123,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
     ///// Bilgi ekranında görünecek bilgiler için veri tabanı bağlantı işlemleri
-    public void veriAlma(){
-
-
-
-
-
-
-
-
-        Cursor cursor1 = database.rawQuery("SELECT * FROM Afetler;",null);
-        int idIndex = cursor1.getColumnIndex("id");
-        int adIndex  = cursor1.getColumnIndex("afetAd");
-        int bilgiIndex = cursor1.getColumnIndex("bilgi");
-        int index = 0;
-        switch (afet)
-        {
-            case "Deprem":
-                index = 1;
-                break;
-            case "Sel":
-                index = 2;
-                break;
-            case "Fırtına":
-                break;
-            case "Orman":
-                break;
-            case "Çığ":
-                break;
-                
-
-
-        }
-
-        while (cursor1.moveToNext()) {
-            if((String)cursor1.getString(adIndex)=="")
-            {}
-
-        }
-        System.out.println("Buraya gelindi");
-
-        cursor1.close();
-
-
-
-    }
-    public void getVideoUrlFromDatabase() {
-        String query = "SELECT url FROM Afetler  ";
-        Cursor cursor = database.rawQuery(query, null);
-
-    if (cursor.moveToFirst()) {
-        @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex("url"));
-        video.setVideoURI(Uri.parse(url));
-        video.start();
-
-        System.out.println(Uri.parse(url));
-    }
 
 
 
@@ -190,8 +132,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-    }
-    public void testler(){
 
 
 
@@ -199,8 +139,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-
-}
 
 
 }
